@@ -1,4 +1,8 @@
 version: '3.2'
+
+volumes:
+   log_storage:
+
 services:
    proxy:
       image: highmed/bpe_proxy
@@ -22,6 +26,7 @@ services:
       image: highmed/bpe
       restart: on-failure
       volumes:
+      - log_storage:/opt/bpe/log
       -  type: bind
          source: ./app/conf
          target: /opt/bpe/conf
